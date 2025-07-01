@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MALU</title>
+
+  <!-- Bootstrap CSS & Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body style="background-image: url('./image/@joianajewelry%20%F0%9F%92%9B.jpeg'); background-repeat: no-repeat; background-size: cover;">
+
+  <!-- Background Video -->
+  <video autoplay muted loop id="bg-video" class="position-fixed top-0 start-0 w-100 h-100 object-fit-cover" style="z-index:-1;">
+    <source src="./video/Recording 2025-06-28 180558.mp4" type="video/mp4" />
+    Your browser does not support HTML5 video.
+  </video>
+
+  <!-- Header & Navbar -->
+  <header>
+    <nav class="navbar navbar-dark bg-transparent blur-bg fixed-top py-3">
+      <div class="container text-center flex-column" id="navbar-container">
+        <div id="nav-brand" class="d-flex flex-column align-items-center" style="opacity: 0;">
+          <img src="./image/Untitled design (31) (1).png" alt="Logo" style="height: 40px;" />
+          <span class="navbar-brand mb-0 h1" style="font-size: 28px;">MALU</span>
+        </div>
+        <ul class="navbar-nav d-flex flex-row justify-content-center mt-2">
+          <li class="nav-item mx-3"><a class="nav-link" href="#about">ABOUT</a></li>
+          <li class="nav-item mx-3"><a class="nav-link" href="#products">PRODUCTS</a></li>
+          <li class="nav-item mx-3"><a class="nav-link" href="#contact">CONTACT</a></li>
+          <li class="nav-item position-relative">
+            <a class="nav-link" href="#" onclick="toggleCart()">
+              <i class="bi bi-bag"></i>
+              <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">0</span>
+            </a>
+            <div id="cart-dropdown" class="position-absolute end-0 mt-2 p-3 bg-white shadow rounded d-none" style="width: 250px; z-index: 1050;"></div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero text-center">
+      <div class="hero-brand">
+        <img src="./image/Untitled design (31) (1).png" alt="Logo" />
+        <h1>MALU</h1>
+      </div>
+    </section>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="about-section py-5mt-5">
+    <div class="container text-center">
+      <h2 class="section-title">About Malu</h2>
+      <p class="about-text mx-auto" style="max-width: 800px;">
+        Malu Swimwear is more than just a label — it's a celebration of confidence, freedom, and natural beauty.
+        Designed for sun-seekers and sea-lovers, our pieces are crafted with care, using eco-conscious materials and timeless silhouettes.
+        Each collection tells a story of elegance, strength, and sustainability.
+      </p>
+    </div>
+  </section>
+
+  <!-- Product Section -->
+  <section id="products" class="product-section py-5 mt-5">
+    <div class="container text-center">
+      <h2 class="section-title mb-5">Our Collection</h2>
+      <div class="row g-4" id="product-list">
+        <!-- Product Cards will be rendered dynamically -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Review Section -->
+  <section id="reviews" class="review-section py-5 mt-5">
+    <div class="container text-center">
+      <h2 class="section-title mb-4">What Our Customers Say</h2>
+      <div id="reviews-container" class="review-items mb-3">
+        <!-- Reviews inserted dynamically -->
+      </div>
+      <div class="review-controls">
+        <button id="prevReview" class="btn btn-outline-light me-2">Previous</button>
+        <button id="nextReview" class="btn btn-outline-light">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section py-5 mt-5">
+    <div class="container">
+      <h2 class="section-title text-center mb-4 my-5">Get in Touch</h2>
+      <form class="mx-auto" style="max-width: 600px;">
+        <div class="mb-3">
+          <label for="name" class="form-label">Your Name</label>
+          <input type="text" id="name" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" id="email" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea id="message" class="form-control" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-light px-4 py-2">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-section text-center py-5 mt-5">
+    <div class="container">
+      <p class="mb-1">&copy; 2025 Malu Swimwear. All rights reserved.</p>
+      <div class="social-icons">
+        <a href="#" class="text-white me-3" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="text-white me-3" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="text-white" aria-label="Email"><i class="bi bi-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Product Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content custom-modal">
+        <div class="modal-body">
+          <div class="row g-4">
+            <!-- Left Column: Image Grid -->
+            <div class="col-md-6">
+              <div class="row h-100">
+                <div class="col-8 pe-2">
+                  <img src="./image/@joianajewelry%20%F0%9F%92%9B.jpeg" alt="Main image" class="img-fluid rounded h-100 w-100 object-fit-cover" />
+                </div>
+                <div class="col-4 d-flex flex-column gap-2">
+                  <img src="./image/@joianajewelry%20%F0%9F%92%9B.jpeg" alt="Alt 1" class="img-fluid rounded w-100 object-fit-cover" style="height: 50%;" />
+                  <img src="./image/@joianajewelry%20%F0%9F%92%9B.jpeg" alt="Alt 2" class="img-fluid rounded w-100 object-fit-cover" style="height: 50%;" />
+                </div>
+              </div>
+            </div>
+            <!-- Right Column: Product Info -->
+            <div class="col-md-6 d-flex flex-column justify-content-between">
+              <div>
+                <h4 class="fw-bold">Coral One-Piece</h4>
+                <p class="text-light">$79</p>
+                <p>A flattering one-piece designed for confidence and comfort. Crafted with sustainable materials and a timeless cut.</p>
+
+                <label class="form-label d-block">Size</label>
+                <div class="d-flex gap-2 mb-4">
+                  <input type="radio" class="btn-check" name="size" id="sizeS" autocomplete="off" checked />
+                  <label for="sizeS" class="btn size-circle">S</label>
+
+                  <input type="radio" class="btn-check" name="size" id="sizeM" autocomplete="off" />
+                  <label for="sizeM" class="btn size-circle">M</label>
+
+                  <input type="radio" class="btn-check" name="size" id="sizeL" autocomplete="off" />
+                  <label for="sizeL" class="btn size-circle">L</label>
+                </div>
+              </div>
+
+              <button class="btn btn-outline-light w-100 mt-3" onclick="addToCart()">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Cart Overlay -->
+<div id="cart-overlay" class="cart-overlay">
+  <div class="cart-panel p-4">
+    <button title="close" id="close-cart" class="btn-close btn-close-white float-end"></button>
+    <h5 class="text-white mb-4">Your Cart</h5>
+    <div id="cart-content"></div>
+  </div>
+</div>
+
+
+  <!-- Scripts -->
+  <script src="./js/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.7/js/bootstrap.min.js" integrity="sha512-zKeerWHHuP3ar7kX2WKBSENzb+GJytFSBL6HrR2nPSR1kOX1qjm+oHooQtbDpDBSITgyl7QXZApvDfDWvKjkUw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
